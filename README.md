@@ -14,7 +14,7 @@ This is based on the npm package `node-schedule`. Read their documentation in he
 
 > `KEEP_BACKUP_FILES=7` 
 
-This means that the ***maximum number*** of backup files stored in the `BACKUP_TO_LOCAL_PATH` is `7`. Change the number to store more or less, but please be cautious, ***large files will take a lot of disk space***.
+This means that the ***maximum number*** of backup files stored in the `KEEP_BACKUP_FILES` is `7`. Change the number to store more or less, but please be cautious, ***large files will take a lot of disk space***.
 
 > `USE_TIMESTAMP=false` 
 
