@@ -10,8 +10,8 @@
     "deploy": "npm run build && cp package.json dist/package.json",
     "start": "node dist/index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Alvin Stefanus",
+  "license": "MIT",
   "dependencies": {
     "@types/node": "^20.11.30",
     "@types/node-schedule": "^2.1.6",
