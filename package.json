@@ -1,0 +1,24 @@
+{
+  "name": "mongodb-auto-backup-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "build": "tsc && cp .env dist/.env",
+    "deploy": "npm run build && cp package.json dist/package.json",
+    "start": "node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.11.30",
+    "@types/node-schedule": "^2.1.6",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "mongodb-snapshot": "^1.4.1",
+    "node-schedule": "^2.1.1",
+    "nodemon": "^3.1.0"
+  }
+}
