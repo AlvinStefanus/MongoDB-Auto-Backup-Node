@@ -50,14 +50,14 @@ async function backupDB() {
 
   const mongo_connector = new MongoDBDuplexConnector({
     connection: {
-      uri: process.env["DB_URL"],
-      dbname: process.env["DB_NAME"],
+      uri: process.env["DB_URL"]!,
+      dbname: process.env["DB_NAME"]!,
     },
   });
 
   const localfile_connector = new LocalFileSystemDuplexConnector({
     connection: {
-      path: path.join(process.env["BACKUP_TO_LOCAL_PATH"], nameGenerator()),
+      path: path.join(process.env["BACKUP_TO_LOCAL_PATH"]!, nameGenerator()),
     },
   });
 
@@ -75,11 +75,11 @@ function deleteOldBackups() {
   createBackupFolder();
 
   const fs = require("fs");
-  const directory = process.env["BACKUP_TO_LOCAL_PATH"];
+  const directory = process.env["BACKUP_TO_LOCAL_PATH"]!;
   fs.readdir(directory, (err: any, files: any) => {
     if (err) throw err;
 
-    if (files.length > process.env["KEEP_BACKUP_FILES"]) {
+    if (files.length > parseInt(process.env["KEEP_BACKUP_FILES"]!)) {
       //Delete the oldest files
       files
         .sort((a: any, b: any) => {
@@ -88,7 +88,7 @@ function deleteOldBackups() {
             fs.statSync(path.join(directory, b)).mtime.getTime()
           );
         })
-        .slice(0, files.length - (process.env["KEEP_BACKUP_FILES"] as any))
+        .slice(0, files.length - parseInt(process.env["KEEP_BACKUP_FILES"]!))
         .forEach((file: any) => {
           console.log(`Deleting ${file}`);
           fs.unlinkSync(path.join(directory, file));
@@ -99,7 +99,7 @@ function deleteOldBackups() {
 }
 
 function startSchedule() {
-  scheduleJob(process.env["SCHEDULE_TIME"], async () => {
+  scheduleJob(process.env["SCHEDULE_TIME"]!, async () => {
     console.log("Backup started");
     await backupDB();
     deleteOldBackups();
